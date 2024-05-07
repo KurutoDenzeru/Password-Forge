@@ -68,7 +68,7 @@ const App: React.FC = () => {
 						Password Generator
 					</h5>
 					{/* Inputs */}
-					<div className="w-full max-w-sm">
+					<div className="w-full max-w-sm mb-2">
 						<div className="flex items-center">
 							<span className="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg">
 								🔑
