@@ -161,7 +161,7 @@ const App: React.FC = () => {
 							<input
 								type="checkbox"
 								id="uppercase"
-								className="mr-2 ms-2"
+								className="mr-2 ms-2 rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 								checked={includeUppercase}
 								onChange={(e) => setIncludeUppercase(e.target.checked)}
 							/>
@@ -171,7 +171,7 @@ const App: React.FC = () => {
 							<input
 								type="checkbox"
 								id="lowercase"
-								className="mr-2 ms-2"
+								className="mr-2 ms-2 rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 								checked={includeLowercase}
 								onChange={(e) => setIncludeLowercase(e.target.checked)}
 							/>
@@ -181,7 +181,7 @@ const App: React.FC = () => {
 							<input
 								type="checkbox"
 								id="numbers"
-								className="mr-2 ms-2"
+								className="mr-2 ms-2 rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 								checked={includeNumbers}
 								onChange={(e) => setIncludeNumbers(e.target.checked)}
 							/>
@@ -191,7 +191,7 @@ const App: React.FC = () => {
 							<input
 								type="checkbox"
 								id="symbols"
-								className="mr-2 ms-2"
+								className="mr-2 ms-2 rounded w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
 								checked={includeSymbols}
 								onChange={(e) => setIncludeSymbols(e.target.checked)}
 							/>
