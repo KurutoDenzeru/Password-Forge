@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const App: React.FC = () => {
 	const [password, setPassword] = useState<string>("");
-	const [length, setLength] = useState<number>(8);
+	const [length, setLength] = useState(8);
 	const [includeUppercase, setIncludeUppercase] = useState<boolean>(false);
 	const [includeLowercase, setIncludeLowercase] = useState<boolean>(false);
 	const [includeNumbers, setIncludeNumbers] = useState<boolean>(false);
@@ -152,7 +152,7 @@ const App: React.FC = () => {
 						onChange={handleLengthChange}
 					/>
 					<p id="length-error" className="error-message hidden">
-						Please enter a length between 4 and 20.
+						Please enter a length between 4 and 32.
 					</p>
 					{/* Checkboxes / Radio buttons */}
 					<div className="mb-4 flex flex-col text-gray-900">
@@ -200,14 +200,6 @@ const App: React.FC = () => {
 					</div>
 					{/* Buttons */}
 					<div className="mb-4">
-						{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
-						<button
-							id="copy-btn"
-							className="px-6 py-2 bg-gray-500 w-full text-white rounded-md hover:bg-gray-600 focus:outline-none"
-							onClick={copyPassword}
-						>
-							Copy Password
-						</button>
 						<div className="mb-4 flex flex-col">
 							{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
 							<button
