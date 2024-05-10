@@ -1,9 +1,9 @@
 import type React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const App: React.FC = () => {
 	const [password, setPassword] = useState<string>("");
-	const [length, setLength] = useState(8);
+	const [length, setLength] = useState<number | "">(8);
 	const [includeUppercase, setIncludeUppercase] = useState<boolean>(false);
 	const [includeLowercase, setIncludeLowercase] = useState<boolean>(false);
 	const [includeNumbers, setIncludeNumbers] = useState<boolean>(false);
@@ -22,7 +22,7 @@ const App: React.FC = () => {
 		if (includeSymbols) charSet += symbolChars;
 
 		let generatedPassword = "";
-		for (let i = 0; i < length; i++) {
+		for (let i = 0; i < Number(length); i++) {
 			generatedPassword += charSet.charAt(
 				Math.floor(Math.random() * charSet.length),
 			);
@@ -42,24 +42,6 @@ const App: React.FC = () => {
 			setLength(newLength as number);
 		}
 	};
-
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-	useEffect(() => {
-		if (
-			includeUppercase ||
-			includeLowercase ||
-			includeNumbers ||
-			includeSymbols
-		) {
-			generatePassword();
-		}
-	}, [
-		includeUppercase,
-		includeLowercase,
-		includeNumbers,
-		includeSymbols,
-		length,
-	]);
 
 	return (
 		<>
@@ -147,7 +129,7 @@ const App: React.FC = () => {
 						type="number"
 						id="length"
 						min="4"
-						max="32"
+						max="90"
 						value={length}
 						className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:ring w-full p-2.5 "
 						onChange={handleLengthChange}
