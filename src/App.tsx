@@ -36,9 +36,10 @@ const App: React.FC = () => {
 	};
 
 	const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const newLength = Number.parseInt(e.target.value, 10);
-		if (newLength >= 4 && newLength <= 32) {
-			setLength(newLength);
+		const newLength =
+			e.target.value === "" ? "" : Number.parseInt(e.target.value, 10);
+		if (newLength === "" || (newLength >= 4 && newLength <= 100)) {
+			setLength(newLength as number);
 		}
 	};
 
