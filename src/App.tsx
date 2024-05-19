@@ -45,8 +45,8 @@ const App: React.FC = () => {
 
 	return (
 		<>
-			<body className="flex justify-center items-center h-screen m-4">
-				<div className="max-w-6xl p-6 bg-white border border-gray-200 rounded-lg shadow ">
+			<body className="flex justify-center items-center h-screen">
+				<div className="p-6 bg-white border border-gray-200 rounded-2xl shadow-2xl ">
 					<h5 className="mb-2 text-start text-2xl font-bold tracking-tight text-gray-900">
 						Password Generator
 					</h5>
