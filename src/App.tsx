@@ -38,7 +38,7 @@ const App: React.FC = () => {
 	const handleLengthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const newLength =
 			e.target.value === "" ? "" : Number.parseInt(e.target.value, 10);
-		if (newLength === "" || (newLength >= 4 && newLength <= 100)) {
+		if (newLength === "" || (newLength >= 1 && newLength <= 100)) {
 			setLength(newLength as number);
 		}
 	};
@@ -128,14 +128,14 @@ const App: React.FC = () => {
 					<input
 						type="number"
 						id="length"
-						min="4"
+						min="1"
 						max="90"
 						value={length}
-						className="bg-gray-50 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:ring w-full p-2.5 "
+						className="bg-gray-50 outline-0 mb-4 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:ring w-full p-2.5 "
 						onChange={handleLengthChange}
 					/>
 					<p id="length-error" className="error-message hidden">
-						Please enter a length between 4 and 32.
+						Please enter a length between 1 and 32.
 					</p>
 					{/* Checkboxes / Radio buttons */}
 					<div className="mb-4 flex flex-col text-gray-900">
