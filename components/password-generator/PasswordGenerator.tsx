@@ -70,18 +70,22 @@ export function PasswordGenerator() {
       />
       <Card className="max-w-md w-full mx-auto p-6 space-y-6 shadow-lg">
         <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
-        <div>
-          <Input
-            value={password}
-            readOnly
-            className="font-mono text-lg tracking-wider bg-gray-100"
-            aria-label="Generated password"
-          />
-          <PasswordActions
-            onCopy={handleCopy}
-            onRegenerate={handleRegenerate}
-            isCopied={isCopied}
-          />
+        <div className="flex flex-col gap-2">
+          {/* Inline password label, input, and actions */}
+          <div className="flex items-center gap-2 w-full">
+            <Input
+              id="generated-password"
+              value={password}
+              readOnly
+              className="font-mono text-lg tracking-wider bg-gray-100 flex-1"
+              aria-label="Generated password"
+            />
+            <PasswordActions
+              onCopy={handleCopy}
+              onRegenerate={handleRegenerate}
+              isCopied={isCopied}
+            />
+          </div>
           <PasswordStrength strength={strength} />
         </div>
         <PasswordOptions options={options} onChange={handleOptionsChange} />

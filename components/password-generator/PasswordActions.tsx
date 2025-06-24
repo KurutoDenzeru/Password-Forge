@@ -11,7 +11,7 @@ interface PasswordActionsProps {
 export function PasswordActions({ onCopy, onRegenerate, isCopied }: PasswordActionsProps) {
   return (
     <TooltipProvider>
-      <div className="flex items-center gap-2 mt-2">
+      <div className="flex items-center gap-2">
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="outline" size="icon" onClick={onCopy} aria-label="Copy password">
