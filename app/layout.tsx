@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   creator: "Kurt Calacday",
   publisher: "Password Forge",
   icons: [
-    { rel: "icon", url: "/favicon.ico", type: "image/x-icon", sizes: "any" },
+    { rel: "icon", url: "/favicon.ico", sizes: "any" },
     { rel: "icon", url: "/favicon.png", type: "image/png", sizes: "32x32" },
     { rel: "icon", url: "/favicon.png", type: "image/png", sizes: "192x192" },
     { rel: "apple-touch-icon", url: "/favicon.png", sizes: "180x180" },
@@ -88,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         {/* Favicon fallback for legacy browsers */}
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" sizes="any" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
         {/* JSON-LD Structured Data */}
