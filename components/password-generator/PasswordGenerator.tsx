@@ -6,7 +6,7 @@ import { PasswordOptions } from "./PasswordOptions";
 import { PasswordStrength } from "./PasswordStrength";
 import { PasswordActions } from "./PasswordActions";
 import { generateRandomPassword, getPasswordStrength } from "./utils";
-import { PasswordOptions as Options, PasswordType } from "./types";
+import { PasswordOptions as Options } from "./types";
 import { z } from "zod";
 
 const optionsSchema = z.object({
@@ -35,7 +35,6 @@ export function PasswordGenerator() {
   // Generate password on mount and when options change
   useEffect(() => {
     setPassword(generateRandomPassword(options));
-    // eslint-disable-next-line
   }, [options]);
 
   const handleOptionsChange = (opts: Options) => {
@@ -62,8 +61,8 @@ export function PasswordGenerator() {
 
   return (
     <Card className="max-w-md mx-auto mt-10 p-6 space-y-6 shadow-lg">
-          <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
-          <div>
+      <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
+      <div>
         <Input
           value={password}
           readOnly
@@ -71,7 +70,6 @@ export function PasswordGenerator() {
           aria-label="Generated password"
         />
         <PasswordActions
-          password={password}
           onCopy={handleCopy}
           onRegenerate={handleRegenerate}
           isCopied={isCopied}
@@ -79,7 +77,6 @@ export function PasswordGenerator() {
         <PasswordStrength strength={strength} />
       </div>
       <PasswordOptions options={options} onChange={handleOptionsChange} />
-      
     </Card>
   );
 }

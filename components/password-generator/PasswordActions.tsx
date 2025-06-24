@@ -3,13 +3,12 @@ import { Copy, RefreshCw } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface PasswordActionsProps {
-  password: string;
   onCopy: () => void;
   onRegenerate: () => void;
   isCopied: boolean;
 }
 
-export function PasswordActions({ password, onCopy, onRegenerate, isCopied }: PasswordActionsProps) {
+export function PasswordActions({ onCopy, onRegenerate, isCopied }: PasswordActionsProps) {
   return (
     <TooltipProvider>
       <div className="flex items-center gap-2 mt-2">
