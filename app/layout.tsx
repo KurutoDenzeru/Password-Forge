@@ -33,8 +33,9 @@ export const metadata: Metadata = {
   creator: "Kurt Calacday",
   publisher: "Password Forge",
   icons: [
-    { rel: "icon", url: "/favicon.png", type: "image/png+xml", sizes: "any" },
-    { rel: "apple-touch-icon", url: "/favicon.png" },
+    { rel: "icon", url: "/favicon.png", type: "image/png", sizes: "192x192" },
+    // { rel: "icon", url: "/favicon.png", type: "image/png", sizes: "192x192" },
+    { rel: "apple-touch-icon", url: "/apple-touch-icon.png", sizes: "180x180" },
   ],
   openGraph: {
     title: "Password Forge – Secure, Powerful Password Generator",
@@ -86,8 +87,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         {/* Favicon fallback for legacy browsers */}
-        <link rel="icon" href="/favicon.png" type="image/png+xml" />
-        <link rel="alternate icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180" />
         {/* JSON-LD Structured Data */}
         <script
           type="application/ld+json"
