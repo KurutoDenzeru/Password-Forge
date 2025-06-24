@@ -60,23 +60,32 @@ export function PasswordGenerator() {
   const strength = getPasswordStrength(password);
 
   return (
-    <Card className="max-w-md mx-auto mt-10 p-6 space-y-6 shadow-lg">
-      <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
-      <div>
-        <Input
-          value={password}
-          readOnly
-          className="font-mono text-lg tracking-wider bg-gray-100"
-          aria-label="Generated password"
-        />
-        <PasswordActions
-          onCopy={handleCopy}
-          onRegenerate={handleRegenerate}
-          isCopied={isCopied}
-        />
-        <PasswordStrength strength={strength} />
-      </div>
-      <PasswordOptions options={options} onChange={handleOptionsChange} />
-    </Card>
+    <div className="flex flex-col items-center">
+      <img
+        src="/favicon.png"
+        alt="Password Forge Logo"
+        className="mb-4 rounded-lg w-auto h-auto max-w-[100px] max-h-[100px]"
+        loading="lazy"
+        style={{ objectFit: "contain" }}
+      />
+      <Card className="max-w-md w-full mx-auto p-6 space-y-6 shadow-lg">
+        <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
+        <div>
+          <Input
+            value={password}
+            readOnly
+            className="font-mono text-lg tracking-wider bg-gray-100"
+            aria-label="Generated password"
+          />
+          <PasswordActions
+            onCopy={handleCopy}
+            onRegenerate={handleRegenerate}
+            isCopied={isCopied}
+          />
+          <PasswordStrength strength={strength} />
+        </div>
+        <PasswordOptions options={options} onChange={handleOptionsChange} />
+      </Card>
+    </div>
   );
 }
