@@ -6,12 +6,12 @@ import { PasswordOptions } from "./PasswordOptions";
 import { PasswordStrength } from "./PasswordStrength";
 import { PasswordActions } from "./PasswordActions";
 import { generateRandomPassword, getPasswordStrength } from "./utils";
-import { PasswordOptions as Options } from "./types";
+import { PasswordOptions as Options, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "./types";
 import { z } from "zod";
 
 const optionsSchema = z.object({
   type: z.enum(["random", "memorable"]),
-  length: z.number().min(4).max(32),
+  length: z.number().min(MIN_PASSWORD_LENGTH).max(MAX_PASSWORD_LENGTH),
   includeUppercase: z.boolean(),
   includeLowercase: z.boolean(),
   includeNumbers: z.boolean(),
@@ -20,7 +20,7 @@ const optionsSchema = z.object({
 
 const DEFAULT_OPTIONS: Options = {
   type: "random",
-  length: 12,
+  length: MIN_PASSWORD_LENGTH,
   includeUppercase: true,
   includeLowercase: true,
   includeNumbers: true,

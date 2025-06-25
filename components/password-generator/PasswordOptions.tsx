@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { PasswordType, PasswordOptions as Options } from "./types";
+import { PasswordType, PasswordOptions as Options, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "./types";
 
 interface PasswordOptionsProps {
   options: Options;
@@ -24,15 +24,15 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
         <Input
           id="length"
           type="number"
-          min={4}
-          max={32}
+          min={MIN_PASSWORD_LENGTH}
+          max={MAX_PASSWORD_LENGTH}
           value={options.length}
-          onChange={e => onChange({ ...options, length: Number(e.target.value) })}
+          onChange={e => onChange({ ...options, length: Math.max(MIN_PASSWORD_LENGTH, Math.min(MAX_PASSWORD_LENGTH, Number(e.target.value))) })}
           className="w-full"
         />
         <Slider
-          min={4}
-          max={32}
+          min={MIN_PASSWORD_LENGTH}
+          max={MAX_PASSWORD_LENGTH}
           value={[options.length]}
           onValueChange={([val]) => onChange({ ...options, length: val })}
           className="w-full"

@@ -24,13 +24,18 @@ export function generateRandomPassword(options: PasswordOptions): string {
 
 /**
  * Calculate password strength (0-100)
+ * More dynamic: length, variety, and entropy
  */
 export function getPasswordStrength(password: string): number {
+  if (!password) return 0;
   let score = 0;
-  if (password.length >= 8) score += 25;
-  if (/[A-Z]/.test(password)) score += 20;
-  if (/[a-z]/.test(password)) score += 20;
-  if (/[0-9]/.test(password)) score += 20;
-  if (/[!&*]/.test(password)) score += 15;
-  return Math.min(score, 100);
+  // Length bonus (up to 40)
+  score += Math.min(40, (password.length - 8) * 2);
+  // Variety bonus (up to 30)
+  const sets = [/[A-Z]/, /[a-z]/, /[0-9]/, /[!&*]/].filter(r => r.test(password)).length;
+  score += sets * 7.5;
+  // Entropy bonus (up to 30)
+  const unique = new Set(password).size;
+  score += Math.min(30, unique * 2);
+  return Math.max(0, Math.min(100, Math.round(score)));
 }
