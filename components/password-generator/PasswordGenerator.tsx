@@ -68,7 +68,7 @@ export function PasswordGenerator() {
         loading="lazy"
         style={{ objectFit: "contain" }}
       />
-      <Card className="max-w-md w-full mx-auto p-6 space-y-6 shadow-lg">
+      <Card className="max-w-lg w-full mx-auto p-6 space-y-6 shadow-lg">
         <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
         <div className="flex flex-col gap-2">
           {/* Inline password label, input, and actions */}

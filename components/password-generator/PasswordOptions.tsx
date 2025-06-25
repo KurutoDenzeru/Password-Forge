@@ -40,13 +40,15 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
         <span className="text-xs">{options.length} chars</span>
       </div>
       {/* Password Type */}
-      <div className="flex items-center gap-2 w-full">
-        <Label htmlFor="password-type">Password Type</Label>
+      <div className="flex items-center gap-2 w-full whitespace-nowrap">
+        <Label htmlFor="password-type" className="min-w-max">
+          Password Type
+        </Label>
         <Select
           value={options.type}
           onValueChange={val => onChange({ ...options, type: val as PasswordType })}
         >
-          <SelectTrigger id="password-type" className="w-full max-w-xs">
+          <SelectTrigger id="password-type" className="w-full">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
