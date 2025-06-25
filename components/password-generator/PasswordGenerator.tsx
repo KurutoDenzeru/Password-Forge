@@ -38,16 +38,12 @@ export function PasswordGenerator() {
     setPassword(generateRandomPassword(options));
   }, [options]);
 
-  // Track if user is editing the password manually
-  const [isUserEditing, setIsUserEditing] = useState(false);
-
   const handleOptionsChange = (opts: Options) => {
     const parsed = optionsSchema.safeParse(opts);
     if (!parsed.success) return;
     setOptions(opts);
     setPassword(generateRandomPassword(opts));
     setIsCopied(false);
-    setIsUserEditing(false);
   };
 
   const handleCopy = () => {
@@ -60,12 +56,10 @@ export function PasswordGenerator() {
   const handleRegenerate = () => {
     setPassword(generateRandomPassword(options));
     setIsCopied(false);
-    setIsUserEditing(false);
   };
 
   const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
-    setIsUserEditing(true);
   };
 
   const strength = getPasswordStrength(password);
@@ -77,6 +71,9 @@ export function PasswordGenerator() {
         alt="Password Forge Logo"
         className="mb-4 rounded-lg w-auto h-auto max-w-[100px] max-h-[100px]"
         loading="lazy"
+        priority={false}
+        width={100}
+        height={100}
         style={{ objectFit: "contain" }}
       />
       <Card className="max-w-lg w-full mx-auto p-6 space-y-6 shadow-lg">
