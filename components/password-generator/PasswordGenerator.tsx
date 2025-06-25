@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PasswordOptions } from "./PasswordOptions";
@@ -71,7 +72,7 @@ export function PasswordGenerator() {
 
   return (
     <div className="flex flex-col items-center">
-      <img
+      <Image
         src="/favicon.png"
         alt="Password Forge Logo"
         className="mb-4 rounded-lg w-auto h-auto max-w-[100px] max-h-[100px]"
