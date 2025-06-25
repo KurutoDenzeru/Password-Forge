@@ -79,7 +79,6 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
           Symbols (!&*)
         </Label>
       </div>
-      
     </div>
   );
 }

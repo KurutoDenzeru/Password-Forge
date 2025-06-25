@@ -37,12 +37,16 @@ export function PasswordGenerator() {
     setPassword(generateRandomPassword(options));
   }, [options]);
 
+  // Track if user is editing the password manually
+  const [isUserEditing, setIsUserEditing] = useState(false);
+
   const handleOptionsChange = (opts: Options) => {
     const parsed = optionsSchema.safeParse(opts);
     if (!parsed.success) return;
     setOptions(opts);
     setPassword(generateRandomPassword(opts));
     setIsCopied(false);
+    setIsUserEditing(false);
   };
 
   const handleCopy = () => {
@@ -55,6 +59,12 @@ export function PasswordGenerator() {
   const handleRegenerate = () => {
     setPassword(generateRandomPassword(options));
     setIsCopied(false);
+    setIsUserEditing(false);
+  };
+
+  const handlePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+    setIsUserEditing(true);
   };
 
   const strength = getPasswordStrength(password);
@@ -76,9 +86,11 @@ export function PasswordGenerator() {
             <Input
               id="generated-password"
               value={password}
-              readOnly
+              onChange={handlePasswordInput}
               className="font-mono text-lg tracking-wider bg-gray-100 flex-1"
-              aria-label="Generated password"
+              aria-label="Generated password or test your own"
+              autoComplete="off"
+              spellCheck={false}
             />
             <PasswordActions
               onCopy={handleCopy}
