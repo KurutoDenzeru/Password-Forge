@@ -66,7 +66,7 @@ export function PasswordGenerator() {
   const strength = getPasswordStrength(password);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center">
+    <div className="relative min-h-screen flex flex-col items-center px-4 sm:px-0">
       <main className="flex-1 flex flex-col justify-center items-center w-full">
         <Image
           src="/favicon.png"
