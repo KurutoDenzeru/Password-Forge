@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PasswordOptions } from "./PasswordOptions";
@@ -9,7 +8,7 @@ import { PasswordActions } from "./PasswordActions";
 import { generateRandomPassword, getPasswordStrength } from "./utils";
 import { PasswordOptions as Options, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH } from "./types";
 import { z } from "zod";
-import { Github, Linkedin, Instagram } from "lucide-react";
+import { toast } from "sonner";
 
 const optionsSchema = z.object({
   type: z.enum(["random", "memorable"]),
@@ -51,6 +50,9 @@ export function PasswordGenerator() {
     if (!password) return;
     navigator.clipboard.writeText(password);
     setIsCopied(true);
+    toast.success("Password copied to clipboard", {
+      description: "You can paste it wherever you need it.",
+    });
     setTimeout(() => setIsCopied(false), 1200);
   };
 
@@ -66,79 +68,38 @@ export function PasswordGenerator() {
   const strength = getPasswordStrength(password);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center px-4 sm:px-0">
-      <main className="flex-1 flex flex-col justify-center items-center w-full">
-        <Image
-          src="/favicon.png"
-          alt="Password Forge Logo"
-          className="mb-4 rounded-lg w-auto h-auto max-w-[100px] max-h-[100px]"
-          loading="lazy"
-          priority={false}
-          width={100}
-          height={100}
-          style={{ objectFit: "contain" }}
-        />
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6"> Password Forge </h1>
-        <Card className="max-w-lg w-full mx-auto p-6 space-y-6 shadow-lg">
-          <h2 className="text-xl font-semibold mb-2">Password Generator</h2>
-          <div className="flex flex-col gap-2 !mb-0">
-            {/* Inline password label, input, and actions */}
-            <div className="flex items-center gap-2 w-full">
+    <Card className="w-full overflow-hidden border border-border/50 shadow-2xl shadow-primary/5 bg-card/80 backdrop-blur-xl transition-all duration-300 hover:shadow-primary/10">
+      <div className="p-6 sm:p-8 space-y-8">
+        <div className="space-y-2">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
+            <div className="relative flex-1 group">
               <Input
                 id="generated-password"
                 value={password}
                 onChange={handlePasswordInput}
-                className="font-mono text-lg tracking-wider bg-gray-100 flex-1"
+                className="font-mono text-2xl sm:text-3xl px-4 bg-background border-border shadow-inner text-foreground tracking-widest text-center transition-all focus-visible:ring-primary focus-visible:border-primary w-full"
                 aria-label="Generated password or test your own"
                 autoComplete="off"
                 spellCheck={false}
               />
+            </div>
+            <div className="flex items-center justify-center shrink-0">
               <PasswordActions
                 onCopy={handleCopy}
                 onRegenerate={handleRegenerate}
                 isCopied={isCopied}
               />
             </div>
+          </div>
+          <div className="pt-2">
             <PasswordStrength strength={strength} />
           </div>
-          <PasswordOptions options={options} onChange={handleOptionsChange} />
-        </Card>
-      </main>
-      {/* Responsive sticky footer at the bottom */}
-      <footer className="w-full flex flex-col items-center gap-2 mt-auto pt-8 pb-4 z-10">
-        <div className="flex gap-4">
-          <a
-            href="https://instagram.com/krtclcdy"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram"
-            className="hover:text-pink-500 transition-colors"
-          >
-            <Instagram className="size-5" />
-          </a>
-          <a
-            href="https://linkedin.com/in/kurtcalacday"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn"
-            className="hover:text-blue-600 transition-colors"
-          >
-            <Linkedin className="size-5" />
-          </a>
-          <a
-            href="https://github.com/KurutoDenzeru"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hover:text-gray-900 transition-colors"
-          >
-            <Github className="size-5" />
-          </a>
         </div>
-        <span className="text-xs text-center px-2">
-          &copy; {new Date().getFullYear()} Password Forge. KurutoDeneru. All rights reserved.
-        </span>
-      </footer>
-    </div>
+
+        <div className="bg-muted/30 rounded-xl p-4 sm:p-6 border border-border/40">
+          <PasswordOptions options={options} onChange={handleOptionsChange} />
+        </div>
+      </div>
+    </Card>
   );
 }

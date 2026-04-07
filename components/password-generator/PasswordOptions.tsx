@@ -1,5 +1,4 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -17,68 +16,83 @@ const PASSWORD_TYPES: { label: string; value: PasswordType }[] = [
 
 export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
   return (
-    <div className="space-y-4">
-      {/* Password Length */}
-      <div className="flex items-center gap-4">
-        <Label htmlFor="length">Length</Label>
-        <Input
-          id="length"
-          type="number"
-          min={MIN_PASSWORD_LENGTH}
-          max={MAX_PASSWORD_LENGTH}
-          value={options.length}
-          onChange={e => onChange({ ...options, length: Math.max(MIN_PASSWORD_LENGTH, Math.min(MAX_PASSWORD_LENGTH, Number(e.target.value))) })}
-          className="w-full"
-        />
-        <Slider
-          min={MIN_PASSWORD_LENGTH}
-          max={MAX_PASSWORD_LENGTH}
-          value={[options.length]}
-          onValueChange={([val]) => onChange({ ...options, length: val })}
-          className="w-full"
-        />
-        <span className="text-xs">{options.length} chars</span>
-      </div>
+    <div className="space-y-6">
       {/* Password Type */}
-      <div className="flex items-center gap-2 w-full whitespace-nowrap">
-        <Label htmlFor="password-type" className="min-w-max">
-          Password Type
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <Label htmlFor="password-type" className="font-semibold text-foreground/80">
+          Generation Type
         </Label>
         <Select
           value={options.type}
           onValueChange={val => onChange({ ...options, type: val as PasswordType })}
         >
-          <SelectTrigger id="password-type" className="w-full">
-            <SelectValue />
+          <SelectTrigger className="w-full sm:w-[180px] bg-background capitalize">
+            <SelectValue placeholder="Select type" />
           </SelectTrigger>
           <SelectContent>
-            {PASSWORD_TYPES.map(type => (
-              <SelectItem key={type.value} value={type.value}>
-                {type.label}
+            {PASSWORD_TYPES.map(pt => (
+              <SelectItem key={pt.value} value={pt.value}>
+                {pt.label}
               </SelectItem>
             ))}
           </SelectContent>
         </Select>
       </div>
-      {/* Password Character Options */}
-      <div className="flex flex-wrap gap-4">
-        <Label className="flex items-center gap-2">
-          <Checkbox checked={options.includeUppercase} onCheckedChange={v => onChange({ ...options, includeUppercase: !!v })} />
-          Uppercase (A-Z)
-        </Label>
-        <Label className="flex items-center gap-2">
-          <Checkbox checked={options.includeLowercase} onCheckedChange={v => onChange({ ...options, includeLowercase: !!v })} />
-          Lowercase (a-z)
-        </Label>
-        <Label className="flex items-center gap-2">
-          <Checkbox checked={options.includeNumbers} onCheckedChange={v => onChange({ ...options, includeNumbers: !!v })} />
-          Numbers (0-9)
-        </Label>
-        <Label className="flex items-center gap-2">
-          <Checkbox checked={options.includeSymbols} onCheckedChange={v => onChange({ ...options, includeSymbols: !!v })} />
-          Symbols (!&*)
-        </Label>
+
+      {/* Password Length */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="length" className="font-semibold text-foreground/80">Length</Label>
+          <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">{options.length} chars</span>
+        </div>
+        <Slider
+          min={MIN_PASSWORD_LENGTH}
+          max={MAX_PASSWORD_LENGTH}
+          value={[options.length]}
+          onValueChange={(val) => {
+            const length = Array.isArray(val) ? val[0] : val;
+            onChange({ ...options, length });
+          }}
+          className="w-full cursor-grab active:cursor-grabbing"
+        />
       </div>
+
+      {options.type === "random" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+          <div className="flex items-center space-x-3 p-3 rounded-lg bg-background border border-border/50 hover:border-primary/30 transition-colors">
+            <Checkbox
+              id="uppercase"
+              checked={options.includeUppercase}
+              onCheckedChange={(checked) => onChange({ ...options, includeUppercase: checked as boolean })}
+            />
+            <Label htmlFor="uppercase" className="flex-1 cursor-pointer font-medium">Uppercase</Label>
+          </div>
+          <div className="flex items-center space-x-3 p-3 rounded-lg bg-background border border-border/50 hover:border-primary/30 transition-colors">
+            <Checkbox
+              id="lowercase"
+              checked={options.includeLowercase}
+              onCheckedChange={(checked) => onChange({ ...options, includeLowercase: checked as boolean })}
+            />
+            <Label htmlFor="lowercase" className="flex-1 cursor-pointer font-medium">Lowercase</Label>
+          </div>
+          <div className="flex items-center space-x-3 p-3 rounded-lg bg-background border border-border/50 hover:border-primary/30 transition-colors">
+            <Checkbox
+              id="numbers"
+              checked={options.includeNumbers}
+              onCheckedChange={(checked) => onChange({ ...options, includeNumbers: checked as boolean })}
+            />
+            <Label htmlFor="numbers" className="flex-1 cursor-pointer font-medium">Numbers</Label>
+          </div>
+          <div className="flex items-center space-x-3 p-3 rounded-lg bg-background border border-border/50 hover:border-primary/30 transition-colors">
+            <Checkbox
+              id="symbols"
+              checked={options.includeSymbols}
+              onCheckedChange={(checked) => onChange({ ...options, includeSymbols: checked as boolean })}
+            />
+            <Label htmlFor="symbols" className="flex-1 cursor-pointer font-medium">Symbols</Label>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
