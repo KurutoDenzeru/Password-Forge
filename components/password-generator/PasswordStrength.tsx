@@ -6,9 +6,9 @@ interface PasswordStrengthProps {
 }
 
 const STRENGTH_LABELS = [
-  { threshold: 80, label: "Strong", color: "text-green-500", Icon: CheckCircle },
-  { threshold: 50, label: "Medium", color: "text-yellow-500", Icon: AlertCircle },
-  { threshold: 0, label: "Weak", color: "text-red-500", Icon: AlertCircle },
+  { threshold: 80, label: "Strong", color: "text-[#788c5d]", Icon: CheckCircle },
+  { threshold: 50, label: "Medium", color: "text-[#6a9bcc]", Icon: AlertCircle },
+  { threshold: 0, label: "Weak", color: "text-[#d97757]", Icon: AlertCircle },
 ];
 
 export function PasswordStrength({ strength }: PasswordStrengthProps) {
