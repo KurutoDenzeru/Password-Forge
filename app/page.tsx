@@ -10,7 +10,7 @@ export default function Home() {
 
       <SiteHeader />
 
-      <main className="flex-1 flex flex-col items-center justify-center p-4 sm:p-6 w-full max-w-5xl mx-auto z-10">
+      <main className="flex-1 flex flex-col items-center justify-center pt-8 px-4 pb-4 sm:pt-10 sm:px-6 sm:pb-6 w-full max-w-5xl mx-auto z-10">
         <div className="w-full flex flex-col items-center space-y-12">
           <HomeHero
             title="Forged for"

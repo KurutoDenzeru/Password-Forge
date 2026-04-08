@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { PasswordOptions } from "./PasswordOptions";
 import { PasswordStrength } from "./PasswordStrength";
 import { PasswordActions } from "./PasswordActions";
@@ -70,14 +71,15 @@ export function PasswordGenerator() {
   return (
     <Card className="w-full overflow-hidden border border-border/50 shadow-2xl shadow-primary/5 bg-card/80 backdrop-blur-xl transition-all duration-300 hover:shadow-primary/10">
       <div className="p-6 sm:p-8 space-y-8">
-        <div className="space-y-2">
+        <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
             <div className="relative flex-1 group">
+              <Label htmlFor="generated-password" className="sr-only">Generated Password</Label>
               <Input
                 id="generated-password"
                 value={password}
                 onChange={handlePasswordInput}
-                className="font-mono text-2xl sm:text-3xl px-4 bg-background border-border shadow-inner text-foreground tracking-widest text-center transition-all focus-visible:ring-primary focus-visible:border-primary w-full"
+                className="font-mono text-xl sm:text-3xl px-4 py-3 bg-background border-border shadow-inner text-foreground tracking-widest text-center transition-all focus-visible:ring-primary focus-visible:border-primary w-full"
                 aria-label="Generated password or test your own"
                 autoComplete="off"
                 spellCheck={false}

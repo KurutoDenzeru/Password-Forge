@@ -19,14 +19,14 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
     <div className="space-y-6">
       {/* Password Type */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <Label htmlFor="password-type" className="font-semibold text-foreground/80">
+        <Label htmlFor="password-type-trigger" className="font-semibold text-foreground/80">
           Generation Type
         </Label>
         <Select
           value={options.type}
           onValueChange={val => onChange({ ...options, type: val as PasswordType })}
         >
-          <SelectTrigger className="w-full sm:w-[180px] bg-background capitalize">
+          <SelectTrigger id="password-type-trigger" aria-label="Generation Type" className="w-full sm:w-[180px] bg-background capitalize">
             <SelectValue placeholder="Select type" />
           </SelectTrigger>
           <SelectContent>
@@ -42,10 +42,12 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
       {/* Password Length */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <Label htmlFor="length" className="font-semibold text-foreground/80">Length</Label>
+          <Label id="length-label" htmlFor="length-slider" className="font-semibold text-foreground/80">Length</Label>
           <span className="text-sm font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">{options.length} chars</span>
         </div>
         <Slider
+          id="length-slider"
+          name="length"
           min={MIN_PASSWORD_LENGTH}
           max={MAX_PASSWORD_LENGTH}
           value={[options.length]}
@@ -54,6 +56,7 @@ export function PasswordOptions({ options, onChange }: PasswordOptionsProps) {
             onChange({ ...options, length });
           }}
           className="w-full cursor-grab active:cursor-grabbing"
+          aria-labelledby="length-label"
         />
       </div>
 
