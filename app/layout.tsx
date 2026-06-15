@@ -49,7 +49,13 @@ export const metadata: Metadata = {
     siteName: "Password Forge",
     images: [
       {
-        url: "/OpenGraph.webp", // Generate a branded OG image!
+        url: "/OpenGraph.webp",
+        width: 1200,
+        height: 630,
+        alt: "Password Forge Logo",
+      },
+      {
+        url: "/OpenGraph.png",
         width: 1200,
         height: 630,
         alt: "Password Forge Logo",
@@ -64,7 +70,7 @@ export const metadata: Metadata = {
     description: "Generate strong, unique passwords instantly. Free, open-source, privacy-first.",
     site: "@krtclcdy",
     creator: "@krtclcdy",
-    images: ["/OpenGraph.webp"],
+    images: ["/OpenGraph.webp", "/OpenGraph.png"],
   },
   alternates: {
     canonical: "https://password-forge.vercel.app",
